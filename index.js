@@ -21,7 +21,7 @@ ctx.scale(dpi, dpi);
 const width = canvas.width;
 const height = canvas.height;
 const barWidth = 35;
-const barSpace = 10;
+const barSpace = 15;
 const chartStartX = 80;
 const chartStartY = height - 130;
 const chartEndX = width - 50;
@@ -49,12 +49,30 @@ function draw(data) {
     ctx.fillText(((maxValue / yValues) * i).toFixed(1), chartStartX - 30, y);
   }
   // Draw bars
+  // for (let i = 0; i < data.value.length; i++) {
+  //   setTimeout(() => {
+  //     const barHeight = (chartHeight / maxValue) * data.value[i];
+  //     const x = chartStartX + (barWidth + barSpace) * i + barSpace;
+  //     const y = chartStartY - barHeight;
+
+  //     ctx.fillStyle = data.color[i];
+  //     ctx.fillRect(x, y, barWidth, barHeight);
+
+  //     canvas.style.transition = "all 1s";
+  //   }, i * 400);
+  // }
   for (let i = 0; i < data.value.length; i++) {
     setTimeout(() => {
       const barHeight = (chartHeight / maxValue) * data.value[i];
       const x = chartStartX + (barWidth + barSpace) * i + barSpace;
       const y = chartStartY - barHeight;
 
+      // Draw 3D effect
+      const depth = 10; // Depth of the 3D effect
+      ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
+      ctx.fillRect(x + barWidth, y, depth, barHeight);
+
+      // Draw the main bar
       ctx.fillStyle = data.color[i];
       ctx.fillRect(x, y, barWidth, barHeight);
 
