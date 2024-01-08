@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Bar Graph</title>
+  </head>
+  <style>
+    .con {
+      display: grid;
+      justify-content: start;
+      width: 600px;
+      padding-left: 50px;
+    }
+    .parametrs {
+      display: grid;
+      grid-auto-flow: column;
+      grid-gap: 3px;
+      padding-bottom: 5px;
+    }
+    .btns {
+      grid-gap: 3px;
+      display: grid;
+      grid-auto-flow: column;
+      justify-content: start;
+    }
+    h1 {
+      text-align: center;
+    }
+  </style>
+  <body>
+    <h1>Bar graph</h1>
+    <div class="canvas">
+      <canvas id="graph" width="1000" height="500"></canvas>
+    </div>
+
+    <div class="con" width="600">
+      <div id="param">
+        <div class="parametrs">
+          <input type="text" id="name" placeholder="insert bars name" />
+          <input
+            type="number"
+            min="0"
+            id="size"
+            placeholder="insert the bars height"
+          />
+          <input type="color" id="colorPicker" />
+        </div>
+      </div>
+
+      <div class="btns">
+        <button type="button" id="add">Add</button>
+        <button type="button" id="remove">Remove</button>
+        <button type="button" id="update">Update Chart</button>
+        <!-- <button type="button" id="reset">reset</button> -->
+      </div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
