@@ -1,17 +1,18 @@
 const add = document.getElementById("add");
 const remove = document.getElementById("remove");
 const update = document.getElementById("update");
+let meta_data = document.getElementById("meta-data");
 // const reset = document.getElementById("reset");
 const param = document.getElementById("param");
 const parametrs = document.querySelectorAll(".parametrs");
 const added =
-  '<div class="parametrs"><input type="text" id="name" placeholder="insert bars name" /><input type="number" min="0" id="size" placeholder="insert the bars height"/><input type="color" id="colorPicker" /></div>';
+  '<div class="parametrs"><input type="text" id="name" placeholder="insert bars name"/><input type="number" min="0" id="size" placeholder="insert the bars height"/><input type="color" id="colorPicker" /></div>';
 data = {
   label: ["one", "two", "three"],
   value: [1, 2, 3],
   color: ["red", "blue", "black"],
 };
-
+// console.log(meta_data);
 const canvas = document.getElementById("graph");
 const ctx = canvas.getContext("2d");
 const dpi = window.devicePixelRatio;
@@ -20,8 +21,8 @@ ctx.scale(dpi, dpi);
 // chart dimentoins
 const width = canvas.width;
 const height = canvas.height;
-const barWidth = 35;
-const barSpace = 15;
+let barWidth = 35;
+let barSpace = 15;
 const chartStartX = 80;
 const chartStartY = height - 130;
 const chartEndX = width - 50;
@@ -30,6 +31,9 @@ const chartWidth = chartEndX - chartStartX;
 const chartHeight = chartStartY - chartEndY;
 
 function draw(data) {
+  space = Math.floor((width - 300) / data.label.length);
+  barSpace = space * 0.15;
+  barWidth = space - barSpace;
   ctx.clearRect(0, 0, width, height);
   const maxValue = Math.max(...data.value);
   // draw
@@ -106,15 +110,38 @@ update.addEventListener("click", (e) => {
     value: [],
     color: [],
   };
+  meta_data.innerHTML = "";
   const parametrs = document.querySelectorAll(".parametrs");
-  parametrs.forEach((element) => {
+
+  parametrs.forEach((element, index) => {
     const inputs = element.querySelectorAll("input");
 
     data.label.push(inputs[0].value);
     data.value.push(+inputs[1].value);
     data.color.push(inputs[2].value);
 
-    console.log(data);
+    const li = document.createElement("li");
+
+    li.textContent = inputs[0].value;
+
+    var style = document.createElement("style");
+    style.innerHTML = `
+        .s${index}::before {
+          content: '•';
+          padding-right:5px;
+          color:${inputs[2].value};
+        }`;
+    // console.log(inputs[2].value);
+
+    // Append the style rule to the document's style sheet
+    document.head.appendChild(style);
+
+    // Add content and other styles to the main element
+    li.className = `s${index}`;
+
+    meta_data.appendChild(li);
+
+    // console.log(data);
   });
   draw(data);
 });

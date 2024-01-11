@@ -3,10 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="index.css" />
     <title>Bar Graph</title>
   </head>
   <style>
+    .chart {
+      display: grid;
+      grid-auto-flow: column;
+    }
+
     .con {
       display: grid;
       justify-content: start;
@@ -28,11 +32,22 @@
     h1 {
       text-align: center;
     }
+
+    ul {
+      list-style-type: none;
+      font-size: 20px;
+    }
   </style>
   <body>
     <h1>Bar graph</h1>
-    <div class="canvas">
-      <canvas id="graph" width="1000" height="500"></canvas>
+    <div class="chart">
+      <div class="canvas">
+        <canvas id="graph" width="1000" height="500"></canvas>
+      </div>
+      <div>
+        <h2>Legend</h2>
+        <ul id="meta-data"></ul>
+      </div>
     </div>
 
     <div class="con" width="600">
