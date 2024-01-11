@@ -129,6 +129,7 @@ update.addEventListener("click", (e) => {
         .s${index}::before {
           content: '•';
           padding-right:5px;
+          font-size: 32px;
           color:${inputs[2].value};
         }`;
     // console.log(inputs[2].value);
